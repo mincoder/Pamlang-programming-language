@@ -1,7 +1,5 @@
-package shotguy.code.librarys;
-
 public class Keyslib {
-	
+
 	public static String[] DeconstructKeysMessage(String s) {
 		int j = 0;
 		String[] re = new String[2];
@@ -17,7 +15,7 @@ public class Keyslib {
 		re[1] = s.substring(j, s.length());
 		return re;
 	}
-	
+
 	public static String ContructKeysMessage(String a, String b) {
 		return a + ":" + b;
 	}

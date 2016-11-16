@@ -1,6 +1,8 @@
 
 
 import java.io.*;
+import imps;
+import Keyslib;
 
 public class reader {
   public static void main(String[] args) {
@@ -14,18 +16,36 @@ public class reader {
       //Establishing writer and reader
       PrintWriter writer = new PrintWriter(f.getParent()+"/"+name+".java", "UTF-8");
       BufferedReader read = new BufferedReader(new FileReader(f));
+      read.mark(0);
       //Preanalasys on file
-      BufferedReader linecalc = read;
       int lines = 0;
-      while (linecalc.readLine() != null) lines++;
-      linecalc.close();
+      String t = read.readLine();
+      while (t != null) {
+        if(t.equalsIgnoreCase("€")) break;
+        lines++;
+        t=readLine();
+      }
+      read.reset();
       //Setting up defaults
       for(int i=0;i<lines;i++) {
         String impcheck = preLine(read.nextLine());
-        if(impcheck.contains("imp")) {
+        if(!imps.getImp(impcheck).equalsIgnoreCase("imp error")&&impcheck.contains("imp")) {
+          writer.println(imps.getImp(impcheck));
+        } else {
+          System.out.println("Invalid imp! Line: " + i);
         }
       }
-      writer.println("");
+      read.reset();
+      for(int i=0;i<lines;i++) {
+        String name = preLine(read.nextLine());
+        String ofname="clmain";
+        if(name.contains("name:")) {
+          name = Keyslib.DeconstructKeysMesssage(name)[];
+          ofname = name;
+        }
+      }
+      writer.println("public class " + ofname + " {");
+      writer.println("")
     }
 
     public String preLine(String line) {
