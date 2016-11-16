@@ -7,6 +7,6 @@ public class imps {
       case "imp:timeEvent" :
         return "import java.awt.event.ActionEvent; import javax.swing.Timer;";
     }
-    return "Error not an available package!";
+    return "error";
   }
 }

@@ -6,42 +6,47 @@ public class reader {
     if(args.length==1) {
       //Setting up files
       File f = new File(args[0]);
-      System.out.println("Compiling file " + args[0] + "!");
+      System.out.println("Compiling file " + f.getParent() + "/" + f.getName() + "!");
       String name = f.getName();
-      name.replace(".cl", "");
-      File compile = new File(f.getParent()+"/"+name+".java", "UTF-8");
+      name.replace(".conl", "");
+      /*File compile = new File(f.getParent()+"/"+name+".java", "UTF-8");
       if(compile.exists()) {
-        compile.createNewFile();
-      } else {
         compile.delete();
         compile.createNewFile();
-      }
+      } else {
+        compile.mkdir();
+        compile.createNewFile();
+      }*/
       //Establishing writer and reader
       PrintWriter writer = new PrintWriter(f.getParent()+"/"+name+".java", "UTF-8");
       BufferedReader read = new BufferedReader(new FileReader(f));
-      read.mark(0);
       //Preanalasys on file
       int lines = 0;
       String t = read.readLine();
       while (t != null) {
-        if(t.equalsIgnoreCase("€")) break;
-        lines++;
-        t=read.readLine();
-      }
-      read.reset();
-      //Setting up imps an main file name
-      for(int i=0;i<lines;i++) {
-        String impcheck = preLine(read.readLine());
-        if(!imps.getImp(impcheck).equalsIgnoreCase("imp error")&&impcheck.contains("imp")) {
-          writer.println(imps.getImp(impcheck));
+        if(t.equalsIgnoreCase("€")) {
+          t=null;
         } else {
-          System.out.println("Invalid imp! Line: " + i);
-          System.exit(0);
+          t=read.readLine();
+        }
+        lines++;
+      }
+      lines--;
+      read = new BufferedReader(new FileReader(f));
+      //Setting up imps an main file name
+      for(int i=0;i<=lines;i++) {
+        String impcheck = preLine(read.readLine());
+        if(impcheck.contains("imp")) {
+          if(!imps.getImp(impcheck).equalsIgnoreCase("error")) {
+            writer.println(imps.getImp(impcheck));
+          } else {
+            System.out.println("Error! Not valid imp! Line: " + lines);
+          }
         }
       }
-      read.reset();
+      read = new BufferedReader(new FileReader(f));
       String ofname="clmain";
-      for(int i=0;i<lines;i++) {
+      for(int i=0;i<=lines;i++) {
         String filename = preLine(read.readLine());
         if(filename.contains("name:")&&isAlpha(Keyslib.DeconstructKeysMessage(filename)[0])) {
           filename = Keyslib.DeconstructKeysMessage(filename)[0];
@@ -51,16 +56,17 @@ public class reader {
           System.exit(0);
         }
       }
-      read.reset();
+      read = new BufferedReader(new FileReader(f));
       //Starting command compilation
       writer.println("public class " + ofname + " {");
       writer.println("public static void main(String[] args) {");
-      for(int i=0;i<lines;i++) {
+      for(int i=0;i<=lines;i++) {
         String newcode = preLine(compiler.compileLine(read.readLine()));
-        if(newcode.contains("@Error")) {
+        System.out.println(newcode + " : " +lines);
+        if(!newcode.contains("@Error")) {
           writer.println(newcode);
         } else {
-          System.out.println(newcode);
+          System.out.println(newcode + i);
         }
       }
       writer.println("}");
