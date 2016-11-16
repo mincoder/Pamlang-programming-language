@@ -1,3 +1,4 @@
+package conlang;
 public class Keyslib {
 
 	public static String[] DeconstructKeysMessage(String s) {

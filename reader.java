@@ -1,12 +1,13 @@
+package conlang;
 import java.io.*;
-
 public class reader {
   public static void main(String[] args) {
+    try {
     if(args.length==1) {
       //Setting up files
       File f = new File(args[0]);
       System.out.println("Compiling file " + args[0] + "!");
-      String name = g.getName();
+      String name = f.getName();
       name.replace(".cl", "");
       File compile = new File(f.getParent()+"/"+name+".java", "UTF-8");
       if(compile.exists()) {
@@ -25,7 +26,7 @@ public class reader {
       while (t != null) {
         if(t.equalsIgnoreCase("€")) break;
         lines++;
-        t=readLine();
+        t=read.readLine();
       }
       read.reset();
       //Setting up imps an main file name
@@ -39,13 +40,13 @@ public class reader {
         }
       }
       read.reset();
+      String ofname="clmain";
       for(int i=0;i<lines;i++) {
-        String name = preLine(read.readLine());
-        String ofname="clmain";
-        if(name.contains("name:")&&isAplha(Keyslib.DeconstructKeysMesssage(name)[0])) {
-          name = Keyslib.DeconstructKeysMesssage(name)[0];
-          ofname = name;
-        } else if(!isAplha(Keyslib.DeconstructKeysMesssage(name)[0])) {
+        String filename = preLine(read.readLine());
+        if(filename.contains("name:")&&isAlpha(Keyslib.DeconstructKeysMessage(filename)[0])) {
+          filename = Keyslib.DeconstructKeysMessage(filename)[0];
+          ofname = filename;
+        } else if(!(isAlpha(Keyslib.DeconstructKeysMessage(filename)[0]))) {
           System.out.println("Your object name must be alpha nurmerical! Line: " + i);
           System.exit(0);
         }
@@ -55,7 +56,7 @@ public class reader {
       writer.println("public class " + ofname + " {");
       writer.println("public static void main(String[] args) {");
       for(int i=0;i<lines;i++) {
-        String newcode = compiler.compileLine(read.readLine());
+        String newcode = preLine(compiler.compileLine(read.readLine()));
         if(newcode.contains("@Error")) {
           writer.println(newcode);
         } else {
@@ -68,16 +69,20 @@ public class reader {
     } else {
       System.out.println("Compiler must only have one argument which is the path to the file!");
     }
+  } catch(Exception e) {
+    System.out.println("Internal compiling error");
+    e.printStackTrace();
+  }
   }
 
-  public String preLine(String line) {
+  public static String preLine(String line) {
     line.replace("  ", "");
     line.replace(" ", "");
     return line;
   }
     //File f = new File(args[0]);
     //System.out.println(f.getName() + " : " + f.getParent());
-  public boolean isAlpha(String name) {
+  public static boolean isAlpha(String name) {
     char[] chars = name.toCharArray();
 
     for (char c : chars) {
