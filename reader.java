@@ -7,8 +7,8 @@ public class reader {
       //Setting up files
       File f = new File(args[0]);
       System.out.println("Compiling file " + f.getParent() + "/" + f.getName() + "!");
-      String name = f.getName();
-      name.replace(".conl", "");
+      String classname = f.getName();
+      classname.replace(".conl", "");
       /*File compile = new File(f.getParent()+"/"+name+".java", "UTF-8");
       if(compile.exists()) {
         compile.delete();
@@ -18,7 +18,6 @@ public class reader {
         compile.createNewFile();
       }*/
       //Establishing writer and reader
-      PrintWriter writer = new PrintWriter(f.getParent()+"/"+name+".java", "UTF-8");
       BufferedReader read = new BufferedReader(new FileReader(f));
       //Preanalasys on file
       int lines = 0;
@@ -34,6 +33,8 @@ public class reader {
       lines--;
       read = new BufferedReader(new FileReader(f));
       //Setting up imps an main file name
+      PrintWriter writer = new PrintWriter(f.getParent()+"/"+classname+".java", "UTF-8");
+
       for(int i=0;i<=lines;i++) {
         String impcheck = preLine(read.readLine());
         if(impcheck.contains("imp")) {
@@ -44,8 +45,9 @@ public class reader {
           }
         }
       }
+
       read = new BufferedReader(new FileReader(f));
-      String ofname="clmain";
+      String ofname=f.getName();
       for(int i=0;i<=lines;i++) {
         String filename = preLine(read.readLine());
         if(filename.contains("name:")&&isAlpha(Keyslib.DeconstructKeysMessage(filename)[0])) {
@@ -62,16 +64,17 @@ public class reader {
       writer.println("public static void main(String[] args) {");
       for(int i=0;i<=lines;i++) {
         String newcode = preLine(compiler.compileLine(read.readLine()));
-        System.out.println(newcode + " : " +lines);
         if(!newcode.contains("@Error")) {
           writer.println(newcode);
         } else {
           System.out.println(newcode + i);
+          System.exit(0);
         }
       }
       writer.println("}");
       writer.println("}");
       writer.close();
+      System.out.println("Compile done!");
     } else {
       System.out.println("Compiler must only have one argument which is the path to the file!");
     }

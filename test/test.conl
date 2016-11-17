@@ -1,2 +1,5 @@
 imp:popup
-open:popup:Hello world!
+text:message:"Hello world!"
+open:popup:message
+var:message:"Test123"
+open:writeConsole:message
