@@ -1,7 +1,10 @@
 package conlang;
+import java.lang.*;
 import java.io.*;
 public class reader {
+  public static String ofname;
   public static void main(String[] args) {
+    ofname="compiledConlang";
     try {
     if(args.length==1) {
       //Setting up files
@@ -33,18 +36,23 @@ public class reader {
       lines--;
       read = new BufferedReader(new FileReader(f));
       //Setting up imps an main file name
-      String ofname="compiledConlang";
       for(int i=0;i<=lines;i++) {
         String filename = preLine(read.readLine());
         if(filename.contains("name:")&&isAlpha(Keyslib.DeconstructKeysMessage(filename)[1])) {
-          filename = Keyslib.DeconstructKeysMessage(filename)[1];
-          ofname = filename;
+           ofname = Keyslib.DeconstructKeysMessage(filename)[1];
         } else if(!(isAlpha(Keyslib.DeconstructKeysMessage(filename)[0]))) {
           System.out.println("Your object name must be alpha nurmerical! Line: " + i);
           System.exit(0);
         }
       }
-      PrintWriter writer = new PrintWriter(f.getParent()+"/"+ofname+".java", "UTF-8");
+      File javafile = new File(f.getParent()+"/"+ofname+".java");
+      if(javafile.exists()) {
+        javafile.delete();
+        javafile.createNewFile();
+      } else {
+        javafile.createNewFile();
+      }
+      PrintWriter writer = new PrintWriter(javafile, "UTF-8");
       read = new BufferedReader(new FileReader(f));
       for(int i=0;i<=lines;i++) {
         String impcheck = preLine(read.readLine());
@@ -73,7 +81,12 @@ public class reader {
       writer.println("}");
       writer.println("}");
       writer.close();
-      System.out.println("Compile done!");
+      int exitValue = toJar.createJar(ofname, javafile);
+      if(exitValue==0) {
+        System.out.println("Compile done!");
+      } else {
+        System.out.println("Could not compile java code to class make sure application is run as administrator!");
+      }
     } else {
       System.out.println("Compiler must only have one argument which is the path to the file!");
     }
