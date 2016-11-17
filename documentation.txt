@@ -1,0 +1,25 @@
+Welcome to the conlang wiki!
+
+This is essentially the documentation.
+
+Commands:
+
+imp:<package> - Import a package
+name:<name> - Sets a name for the main class will effect the main class name.
+open:<object>:<args> - Opens an object could be whatever. The object could be a class or a package.
+text:<name>:<value> - Creates a text variable with a value.
+numb:<name>:<value> - Creates a number variable with a value.
+var:<name>:<new value> - Creates a number
+
+These are the current commands.
+
+Packages:
+popup - Add popups - open:popup:<value>
+
+Pre-imported packages(Can not be imported):
+writeConsole - Writes to console - open:writeConsole:<value>
+
+How to write hello world:
+
+imp:popup
+open:popup:"Hello world!"

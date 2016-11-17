@@ -21,15 +21,15 @@ public class compiler {
         String times = Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[1])[0];
         String todo = Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[1])[1];
         command = "for(int " + varname + "=0;" + varname+">" + times + ";" + varname + "++) " + compileLine(todo) + ";";
+      } else {
+        command="@Error not valid command! Line: ";
       }
-      /* _TODO_ else if(Keyslib.DeconstructKeysMessage(command)[0].equalsIgnoreCase("bloop")) {
+      /* _TODO_WHILE_LOOP_ else if(Keyslib.DeconstructKeysMessage(command)[0].equalsIgnoreCase("bloop")) {
         String varname = Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[0];
         String times = Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[1])[0];
         String todo = Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[1])[1];
         command = "for(int " + varname + "=0;" + varname+">" + times + ";" + varname + "++) " + compileLine(todo) + ";";
-      }*/ else {
-        command="@Error not valid command! Line: ";
-      }
+      }*/
     } else {
       command="";
     }
