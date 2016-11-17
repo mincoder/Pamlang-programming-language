@@ -13,7 +13,7 @@ public class compiler {
       } else if(Keyslib.DeconstructKeysMessage(command)[0].equalsIgnoreCase("text")) {
         command = "String " + Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[0] + " = " + Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[1] + ";";
       }  else if(Keyslib.DeconstructKeysMessage(command)[0].equalsIgnoreCase("numb")) {
-        command = "double " + Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[0] + " = " + Integer.parseInt(Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[1]) + ";";
+        command = "double " + Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[0] + " = " + Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[1] + ";";
       }  else if(Keyslib.DeconstructKeysMessage(command)[0].equalsIgnoreCase("var")) {
         command = Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[0] + " = " + Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[1] + ";";
       } else {

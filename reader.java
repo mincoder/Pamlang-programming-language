@@ -33,8 +33,19 @@ public class reader {
       lines--;
       read = new BufferedReader(new FileReader(f));
       //Setting up imps an main file name
-      PrintWriter writer = new PrintWriter(f.getParent()+"/"+classname+".java", "UTF-8");
-
+      String ofname="compiledConlang";
+      for(int i=0;i<=lines;i++) {
+        String filename = preLine(read.readLine());
+        if(filename.contains("name:")&&isAlpha(Keyslib.DeconstructKeysMessage(filename)[1])) {
+          filename = Keyslib.DeconstructKeysMessage(filename)[0];
+          ofname = filename;
+        } else if(!(isAlpha(Keyslib.DeconstructKeysMessage(filename)[0]))) {
+          System.out.println("Your object name must be alpha nurmerical! Line: " + i);
+          System.exit(0);
+        }
+      }
+      PrintWriter writer = new PrintWriter(f.getParent()+"/"+ofname+".java", "UTF-8");
+      read = new BufferedReader(new FileReader(f));
       for(int i=0;i<=lines;i++) {
         String impcheck = preLine(read.readLine());
         if(impcheck.contains("imp")) {
@@ -46,18 +57,6 @@ public class reader {
         }
       }
 
-      read = new BufferedReader(new FileReader(f));
-      String ofname=f.getName();
-      for(int i=0;i<=lines;i++) {
-        String filename = preLine(read.readLine());
-        if(filename.contains("name:")&&isAlpha(Keyslib.DeconstructKeysMessage(filename)[0])) {
-          filename = Keyslib.DeconstructKeysMessage(filename)[0];
-          ofname = filename;
-        } else if(!(isAlpha(Keyslib.DeconstructKeysMessage(filename)[0]))) {
-          System.out.println("Your object name must be alpha nurmerical! Line: " + i);
-          System.exit(0);
-        }
-      }
       read = new BufferedReader(new FileReader(f));
       //Starting command compilation
       writer.println("public class " + ofname + " {");
