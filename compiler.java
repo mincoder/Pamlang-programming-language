@@ -16,7 +16,18 @@ public class compiler {
         command = "double " + Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[0] + " = " + Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[1] + ";";
       }  else if(Keyslib.DeconstructKeysMessage(command)[0].equalsIgnoreCase("var")) {
         command = Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[0] + " = " + Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[1] + ";";
-      } else {
+      } else if(Keyslib.DeconstructKeysMessage(command)[0].equalsIgnoreCase("tloop")) {
+        String varname = Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[0];
+        String times = Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[1])[0];
+        String todo = Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[1])[1];
+        command = "for(int " + varname + "=0;" + varname+">" + times + ";" + varname + "++) " + compileLine(todo) + ";";
+      }
+      /* _TODO_ else if(Keyslib.DeconstructKeysMessage(command)[0].equalsIgnoreCase("bloop")) {
+        String varname = Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[0];
+        String times = Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[1])[0];
+        String todo = Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[1])[1];
+        command = "for(int " + varname + "=0;" + varname+">" + times + ";" + varname + "++) " + compileLine(todo) + ";";
+      }*/ else {
         command="@Error not valid command! Line: ";
       }
     } else {

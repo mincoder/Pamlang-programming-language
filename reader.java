@@ -37,7 +37,7 @@ public class reader {
       for(int i=0;i<=lines;i++) {
         String filename = preLine(read.readLine());
         if(filename.contains("name:")&&isAlpha(Keyslib.DeconstructKeysMessage(filename)[1])) {
-          filename = Keyslib.DeconstructKeysMessage(filename)[0];
+          filename = Keyslib.DeconstructKeysMessage(filename)[1];
           ofname = filename;
         } else if(!(isAlpha(Keyslib.DeconstructKeysMessage(filename)[0]))) {
           System.out.println("Your object name must be alpha nurmerical! Line: " + i);
