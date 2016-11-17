@@ -9,7 +9,10 @@ name:<name> - Sets a name for the main class will effect the main class name.
 open:<object>:<args> - Opens an object could be whatever. The object could be a class or a package.
 text:<name>:<value> - Creates a text variable with a value.
 numb:<name>:<value> - Creates a number variable with a value.
-var:<name>:<new value> - Creates a number
+var:<name>:<new value> - Changes a variable.
+tloop:<times counter name>:<times>:<code> - Makes a loop that is repeated the <times> times
+and the amount of times it has repeated is stored in <times counter name>, the code it will perform is in <code>
+doJava:<code> - Will perform java code written in <code>
 
 These are the current commands.
 
