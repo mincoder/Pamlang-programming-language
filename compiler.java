@@ -16,22 +16,34 @@ public class compiler {
         command = "double " + Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[0] + " = " + Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[1] + ";";
       }  else if(Keyslib.DeconstructKeysMessage(command)[0].equalsIgnoreCase("var")) {
         command = Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[0] + " = " + Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[1] + ";";
-      } else if(Keyslib.DeconstructKeysMessage(command)[0].equalsIgnoreCase("tloop")) {
+      } else if(Keyslib.DeconstructKeysMessage(command)[0].equalsIgnoreCase(";tloop")) {
         String varname = Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[0];
         String times = Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[1])[0];
         String todo = Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[1])[1];
-        command = "for(int " + varname + "=0;" + varname+"<" + times + ";" + varname + "++) {" + compileLine(todo) + "}";
+        command = "for(int " + varname + "=0;" + varname+"<" + times + ";" + varname + "++) {" + compileLine(todo);
+      } else if(Keyslib.DeconstructKeysMessage(command)[0].equalsIgnoreCase(";bloop")) {
+        String todo = Keyslib.DeconstructKeysMessage(command)[1];
+        command = "while(true) {" + compileLine(todo);
+      }  else if(Keyslib.DeconstructKeysMessage(command)[0].equalsIgnoreCase("tloop")) {
+        String varname = Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[0];
+        String times = Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[1])[0];
+        String todo = Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[1])[1];
+        command = "for(int " + varname + "=0;" + varname+"<" + times + ";" + varname + "++) " + compileLine(todo) + ";";
       } else if(Keyslib.DeconstructKeysMessage(command)[0].equalsIgnoreCase("bloop")) {
         String todo = Keyslib.DeconstructKeysMessage(command)[1];
         command = "while(true) " + compileLine(todo) + ";";
       } else if(Keyslib.DeconstructKeysMessage(command)[0].equalsIgnoreCase("doJava")) {
         command = Keyslib.DeconstructKeysMessage(command)[1];
-      } else if(Keyslib.DeconstructKeysMessage(commands)[0].equalsIgnoreCase("checkif")) {
-        String operator = Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(commands)[1])[0];
-        String todo = Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(commands)[1])[0];
-        command = "if(" + operator + ") {" + compileLine(todo) + "}";
-      } else if(commands.equalsIgnoreCase("endloop")) {
+      } else if(Keyslib.DeconstructKeysMessage(command)[0].equalsIgnoreCase("checkif")) {
+        String operator = Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[0];
+        String todo = Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[0];
+        command = "if(" + operator + ") {" + compileLine(todo);
+      } else if(command.equalsIgnoreCase("stoploop")) {
         command = "break;";
+      } else if(command.equalsIgnoreCase("end")) {
+        command = "}";
+      } else if(command.equalsIgnoreCase("ig")) {
+        command = "";
       } else {
         command="@Error not valid command! \n" + command + " Line: ";
       }

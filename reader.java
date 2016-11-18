@@ -38,11 +38,13 @@ public class reader {
       //Setting up imps an main file name
       for(int i=0;i<=lines;i++) {
         String filename = preLine(read.readLine());
-        if(filename.contains("name:")&&isAlpha(Keyslib.DeconstructKeysMessage(filename)[1])) {
-           ofname = Keyslib.DeconstructKeysMessage(filename)[1];
-        } else if(!(isAlpha(Keyslib.DeconstructKeysMessage(filename)[0]))) {
-          System.out.println("Your object name must be alpha nurmerical! Line: " + i);
-          System.exit(0);
+        if(filename.contains("name:")) {
+          if(isAlpha(Keyslib.DeconstructKeysMessage(filename)[1])) {
+            ofname = Keyslib.DeconstructKeysMessage(filename)[1];
+          } else {
+            System.out.println("Your object name must be alpha nurmerical! Line: " + i++);
+            System.exit(0);
+          }
         }
       }
       File javafile = new File(f.getParent()+"/"+ofname+".java");
@@ -60,7 +62,7 @@ public class reader {
           if(!imps.getImp(impcheck).equalsIgnoreCase("error")) {
             writer.println(imps.getImp(impcheck));
           } else {
-            System.out.println("Error! Not valid imp! Line: " + lines);
+            System.out.println("Error! Not valid imp! Line: " + i++);
           }
         }
       }
@@ -69,8 +71,13 @@ public class reader {
       //Starting command compilation
       writer.println("public class " + ofname + " {");
       writer.println("public static void main(String[] args) {");
+      lines--;
       for(int i=0;i<=lines;i++) {
-        String newcode = preLine(compiler.compileLine(read.readLine()));
+        String newcode = read.readLine();
+        if(newcode==null) {
+          newcode="";
+        }
+        newcode = preLine(compiler.compileLine(newcode));
         if(!newcode.contains("@Error")) {
           writer.println(newcode);
         } else {
