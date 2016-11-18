@@ -85,7 +85,7 @@ public class reader {
       if(exitValue==0) {
         System.out.println("Compile done!");
       } else {
-        System.out.println("Could not compile java code to class make sure application is run as administrator!");
+        System.out.println("Could not compile java code to class make sure application is run as administrator!\n Could also be an error in your code!");
       }
     } else {
       System.out.println("Compiler must only have one argument which is the path to the file!");

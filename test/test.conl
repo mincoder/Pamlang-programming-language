@@ -1,3 +1,3 @@
 imp:popup
-name:helloworld
-tloop:i:10:open:popup:i
+name:required
+tloop:i:10:open:writeConsole:i

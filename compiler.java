@@ -23,7 +23,7 @@ public class compiler {
         command = "for(int " + varname + "=0;" + varname+"<" + times + ";" + varname + "++) " + compileLine(todo) + ";";
       } else if(Keyslib.DeconstructKeysMessage(command)[0].equalsIgnoreCase("bloop")) {
         String todo = Keyslib.DeconstructKeysMessage(command)[1];
-        command = "for(int " + varname + "=0;" + varname+">" + times + ";" + varname + "++) " + compileLine(todo) + ";";
+        command = "while(true) " + compileLine(todo) + ";";
       } else if(Keyslib.DeconstructKeysMessage(command)[0].equalsIgnoreCase("doJava")) {
         command = Keyslib.DeconstructKeysMessage(command)[1];
       } else {
