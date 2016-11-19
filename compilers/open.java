@@ -1,6 +1,8 @@
 package pamlang.compilers;
 
-public class open implements expression {
+import pamlang.*;
+
+public class open implements compilerInterface {
   /* NOT NEEDED public boolean shouldCompile(String command) {
     boolean accept;
     return true;
