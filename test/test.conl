@@ -1,6 +1,0 @@
-imp:popup
-name:required
-;tloop:i:10:ig
-open:popup:"This is run for the"
-open:popup:i + "th time!"
-end
