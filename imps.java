@@ -1,4 +1,4 @@
-package conlang;
+package pamlang;
 public class imps {
   public static String getImp(String imp) {
     switch(imp) {

@@ -1,10 +1,10 @@
-package conlang;
+package pamlang;
 import java.lang.*;
 import java.io.*;
 public class reader {
   public static String ofname;
   public static void main(String[] args) {
-    ofname="compiledConlang";
+    ofname="compiledpamlang";
     try {
     if(args.length==1) {
       //Setting up files

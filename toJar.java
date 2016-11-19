@@ -1,4 +1,4 @@
-package conlang;
+package pamlang;
 import java.lang.*;
 import java.io.*;
 

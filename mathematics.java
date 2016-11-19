@@ -1,4 +1,4 @@
-package conlang;
+package pamlang;
 
 public class mathematics {
   public static String checkVars(String var) {

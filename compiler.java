@@ -1,8 +1,13 @@
-package conlang;
+package pamlang;
+import pamlang.compiler;
+
 public class compiler {
   public static String compileLine(String command) {
     if(CheckForPre(command)) {
-      if(Keyslib.DeconstructKeysMessage(command)[0].equalsIgnoreCase("open")) {
+      String header = Keyslib.DeconstructKeysMessage(command)[1];
+      switch(header) {
+        case: "open":
+          command=
         if(Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[0].equalsIgnoreCase("popup")) {
           command = "JOptionPane.showMessageDialog(null," + Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[1] + " + \"\");";
         } else if(Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[0].equalsIgnoreCase("writeConsole")) {
@@ -44,9 +49,9 @@ public class compiler {
         command = "}";
       } else if(command.equalsIgnoreCase("ig")) {
         command = "";
-      } else {
-        command="@Error not valid command! \n" + command + " Line: ";
       }
+      }
+      command="@Error not valid command! \n" + command + " Line: ";
     } else {
       command="";
     }
