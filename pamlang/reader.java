@@ -12,14 +12,6 @@ public class reader {
       System.out.println("Compiling file " + f.getParent() + "/" + f.getName() + "!");
       String classname = f.getName();
       classname.replace(".conl", "");
-      /*File compile = new File(f.getParent()+"/"+name+".java", "UTF-8");
-      if(compile.exists()) {
-        compile.delete();
-        compile.createNewFile();
-      } else {
-        compile.mkdir();
-        compile.createNewFile();
-      }*/
       //Establishing writer and reader
       BufferedReader read = new BufferedReader(new FileReader(f));
       //Preanalasys on file

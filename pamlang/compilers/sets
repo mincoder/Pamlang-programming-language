@@ -1,0 +1,10 @@
+package pamlang.compilers;
+import pamlang.*;
+public class sets {
+    public static String sets(String command) {
+        if(Keyslib.DeconstructKeysMessage(command)[0].equalsIgnoreCase(".")) {
+            command = compiler.compileLine(Keyslib.DeconstructKeysMessage(command)[1]);
+        }
+        return command;
+    }
+}

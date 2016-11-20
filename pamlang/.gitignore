@@ -2,3 +2,4 @@
 *.class
 /test/
 /.idea/
+pamlang.iml
