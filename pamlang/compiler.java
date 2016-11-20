@@ -59,7 +59,6 @@ public class compiler {
         case "ig":
           ig.compile(command);
           return command;
-        // _TODO_ADD_COMPILER_ command = "";
       }
       command="@Error not valid command! \n" + command + " Line: ";
     } else {
