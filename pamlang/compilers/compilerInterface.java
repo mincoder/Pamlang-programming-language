@@ -1,6 +1,6 @@
 package pamlang.compilers;
 
-interface compilerInterface {
+public interface compilerInterface {
     //public boolean shouldCompile();
     public String compile(String command);
 }

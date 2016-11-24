@@ -1,9 +1,11 @@
 package pamlang.compilers;
-import panglang.*;
+
+import pamlang.*;
+
 public class doJava implements compilerInterface {
-  public String compile(String commmand) {
+  public String compile(String command) {
     String todo = Keyslib.DeconstructKeysMessage(command)[1];
-    command = "while(true) " + compileLine(todo) + ";";
+    command = "while(true) " + compiler.compileLine(todo) + ";";
     return command;
   }
 }
