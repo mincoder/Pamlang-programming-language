@@ -5,6 +5,8 @@ public class reader {
   public static String ofname;
   public static void main(String[] args) {
     ofname="compiledpamlang";
+    args = new String[1];
+    args[0]="/Users/Will/Dropbox/atom-projects/pamlang/test/test.coln";
     try {
     if(args.length==1) {
       //Setting up files

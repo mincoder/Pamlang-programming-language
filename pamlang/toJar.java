@@ -23,7 +23,7 @@ public class toJar {
     Process pr2 = rt.exec("jar -cfe " +javafile.getParent() + "/"+ ofname + ".jar " + ofname +" -C " + javafile.getParent() + " " + ofname + ".class");
     pr2.waitFor();
     File compiledversion = new File(javafile.getParent()+"/"+ofname+".class");
-    javafile.delete();
+    //javafile.delete();
     f.delete();
     compiledversion.delete();
     return exit;

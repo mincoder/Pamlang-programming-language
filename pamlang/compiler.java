@@ -16,29 +16,17 @@ public class compiler {
           command=new open().compile(command);
           return command;
         case "text":
-          command=new text().compile(command);
+          command=((text) new text()).compile(command);
           return command;
-        // _TODO_ADD_COMPILER_ command = "String " + Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[0] + " = " + Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[1] + ";";
         case "numb":
           command=new numb().compile(command);
           return command;
-        // _TODO_ADD_COMPILER_ command = "double " + Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[0] + " = " + Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[1] + ";";
         case "var":
           command = new var().compile(command);
           return command;
-        // _TODO_ADD_COMPILER_ command = Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[0] + " = " + Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[1] + ";";
         case "etloop":
           command = new etloop().compile(command);
           return command;
-        /* _TODO_ADD_COMPILER_ String varname = Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[0];
-        String times = Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[1])[0];
-        String todo = Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(Keyslib.DeconstructKeysMessage(command)[1])[1])[1];
-        command = "for(int " + varname + "=0;" + varname+"<" + times + ";" + varname + "++) {" + compileLine(todo);*/
-        case "ebloop":
-          command = new ebloop().compile(command);
-          return command;
-        /* _TODO_ADD_COMPILER_ String todo = Keyslib.DeconstructKeysMessage(command)[1];
-        command = "while(true) {" + compileLine(todo);*/
         case "tloop":
           command = new tloop().compile(command);
           return command;

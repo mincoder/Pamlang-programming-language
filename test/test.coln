@@ -1,2 +1,2 @@
 imp:popup
-open:popup:"Hello world!"
+tloop:10:i:open:popup:"Times repeated:"+i
