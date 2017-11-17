@@ -1,2 +1,10 @@
 imp:popup
-tloop:10:i:open:popup:"Times repeated:"+i
+imp:file
+open:popup:"Reading File"
+errhandle:open:fileLength:lines:file.txt
+etloop:i:lines
+text:content:""
+errhandle:open:readLine:content:i:file.txt
+open:popup:content
+end:
+open:popup:"End of the file is here"

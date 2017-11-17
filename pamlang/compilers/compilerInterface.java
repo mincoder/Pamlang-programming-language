@@ -2,5 +2,5 @@ package pamlang.compilers;
 
 public interface compilerInterface {
     //public boolean shouldCompile();
-    public String compile(String command);
+    public String compile(String command,int line);
 }

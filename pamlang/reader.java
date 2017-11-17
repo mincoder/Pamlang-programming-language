@@ -36,7 +36,7 @@ public class reader {
           if(isAlpha(Keyslib.DeconstructKeysMessage(filename)[1])) {
             ofname = Keyslib.DeconstructKeysMessage(filename)[1];
           } else {
-            System.out.println("Your object name must be alpha nurmerical! Line: " + i++);
+            System.out.println("Err: Your object name must be alpha nurmerical! Line: " + i++);
             System.exit(0);
           }
         }
@@ -56,7 +56,7 @@ public class reader {
           if(!imps.getImp(impcheck).equalsIgnoreCase("error")) {
             writer.println(imps.getImp(impcheck));
           } else {
-            System.out.println("Error! Not valid imp! Line: " + i++);
+            System.out.println("Err: Error! Not valid imp! Line: " + i++);
           }
         }
       }
@@ -65,13 +65,12 @@ public class reader {
       //Starting command compilation
       writer.println("public class " + ofname + " {");
       writer.println("public static void main(String[] args) {");
-      lines--;
       for(int i=0;i<=lines;i++) {
         String newcode = read.readLine();
         if(newcode==null) {
           newcode="";
         }
-        newcode = preLine(compiler.compileLine(newcode));
+        newcode = preLine(compiler.compileLine(newcode,i+2));
         if(!newcode.contains("@Error")) {
           writer.println(newcode);
         } else {
@@ -86,20 +85,24 @@ public class reader {
       if(exitValue==0) {
         System.out.println("Compile done!");
       } else {
-        System.out.println("Could not compile java code to class make sure application is run as administrator!\n Could also be an error in your code!");
+        System.out.println("Err: Could not compile java code to class make sure application is run as administrator!\nErr: Could also be an error in your code!");
       }
     } else {
-      System.out.println("Compiler must only have one argument which is the path to the file!");
+      System.out.println("Err: Compiler must only have one argument which is the path to the file!");
     }
   } catch(Exception e) {
-    System.out.println("Internal compiling error");
+    System.out.println("Err: Internal compiling error");
     e.printStackTrace();
   }
   }
 
   public static String preLine(String line) {
-    line.replace("  ", "");
-    line.replace(" ", "");
+	  try {
+		  line.replace("	", "");
+	  } catch(Exception e) {
+		  
+	  }
+    //line.replace(" ", "");
     return line;
   }
     //File f = new File(args[0]);
